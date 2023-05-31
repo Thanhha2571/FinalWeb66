@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
     item: String,
     price: String,
     quantity: String,
-    description : [{ type: mongoose.Schema.Types.String, ref: 'inventories' }]
+    description : String
 })
 
 const orderModel = mongoose.model('orders', orderSchema)

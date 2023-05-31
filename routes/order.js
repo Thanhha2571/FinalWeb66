@@ -9,9 +9,17 @@ orderRouter.get('/get-all-orders', async (req, res) => {
 })
 
 orderRouter.patch('/edit/:id', async (req, res) => {
-    const { description } = req.body
+    const { inventory_id } = req.body
+    // console.log(inventory_id );
     const id = req.params.id
-    const order = await orderModel.findByIdAndUpdate(id, {$push: {description: description}}, {new: true})
+    const description_id = await inventoryModel.findById(inventory_id)
+    // console.log(description_id);
+    // const description = await inventoryModel.find({ description: description_id.description })
+    console.log(typeof(description_id.description));
+    console.log(typeof(orderModel.description));
+
+    const order = await orderModel.findByIdAndUpdate(id, {$set: {description: description_id.description}}, {new: true})
+    console.log(order._id);
     res.send(order)
 });
 

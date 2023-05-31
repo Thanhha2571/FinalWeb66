@@ -18,8 +18,8 @@ userRouter.get('/profile',(req, res) => {
     res.send(user)
 })
 
-userRouter.get('/get-all-users',async (req, res) => {
-    const users = await userMdodel.find({})
+userRouter.get('/get-all-users',authorCheck, async (req, res) => {
+    const users = await userModel.find({})
     res.send(users)
 })
 module.exports = { userRouter}
